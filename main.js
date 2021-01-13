@@ -63,11 +63,20 @@ function removeConvex(x,y){
 
 function moveConvex(direction) {
     removeConvex(now_x,now_y)
-    if ( direction == "up" ) {
-        createConvex(now_x,now_y-block.height,now_color)
-    } else {
-        createConvex(now_x,now_y+block.height,now_color)
-    }
+   switch(direction){
+        case "up":
+            createConvex(now_x,now_y-block.height,now_color);
+            break;
+        case "down":
+            createConvex(now_x,now_y+block.height,now_color);
+            break;
+        case "right":
+            createConvex(now_x+block.height,now_y,now_color);
+            break;
+        case "left":
+            createConvex(now_x-block.height,now_y,now_color);
+            break;
+   }
 }
 
 // キーボードの処理
@@ -76,10 +85,16 @@ document.addEventListener("keydown",
         console.log(event.code);
         switch(event.code){
             case "ArrowUp":
-                moveConvex("up")
+                moveConvex("up");
                 break;
             case "ArrowDown":
-                moveConvex("down")
+                moveConvex("down");
+                break;
+            case "ArrowRight":
+                moveConvex("right");
+                break;
+            case "ArrowLeft":
+                moveConvex("left");
                 break;
         }
     }
