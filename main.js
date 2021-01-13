@@ -30,6 +30,30 @@ colors=[
 canvas.width=640;
 canvas.height=480;
 
+//罫線をひく
+function createLine() {
+    //開始
+    context.beginPath();
+
+    //縦線を引く
+    for (var _x=0; _x<canvas.width/block.width; _x++){
+        context.moveTo(_x*block.width,0)
+        context.lineTo(_x*block.width,canvas.height)
+    }
+
+    //縦線を引く
+    for (var _y=0; _y<canvas.height/block.height; _y++){
+        context.moveTo(0,_y*block.height)
+        context.lineTo(canvas.width,_y*block.height)
+    }
+
+    //終了
+    context.closePath();
+
+    //現在のパスを輪郭表示
+    context.stroke();
+}
+
 //ブロックを作成 
 function createBlock(x,y,color) {
     context.fillStyle=color;
