@@ -16,10 +16,12 @@ var now_x=null;
 var now_y=null;
 var now_color=null;
 
-var convex_x_list= new Array();
-var convex_y_list= new Array();
-var convex_count=null;
+// 全ての図形の座標の値を保存
+var x_list= new Array();
+var y_list= new Array();
 
+// 座標配列のconvexが該当する番号
+var convex_list= new Array();
 
 // 色の種類
 colors=[
@@ -67,9 +69,9 @@ function createBlock(x,y,color) {
 }
 
 function createConvex(x,y,color) {
-    convex_x_list.push(x);
-    convex_y_list.push(y);
-    convex_count++;
+    x_list.push(x);
+    y_list.push(y);
+    convex_list.push(x_list.length);
 
     now_x=x
     now_y=y
@@ -88,15 +90,15 @@ function createConvex(x,y,color) {
     createBlock(x+block.width * 2,y+block.height,color);
     createBlock(x,y+block.height,color);
 
-    console.log(convex_x_list);
-    console.log(convex_y_list);
-    console.log(convex_count);
+    console.log(x_list);
+    console.log(y_list);
+    console.log(convex_list);
 }
 
 function removeConvex(x,y){
-    convex_count--;
-    convex_x_list.pop();
-    convex_y_list.pop();
+    x_list.pop();
+    y_list.pop();
+    convex_list.pop();
 
     context.clearRect(x+block.width,y,block.width,block.height);
     context.clearRect(x,y+block.height,block.width*3,block.height);
