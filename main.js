@@ -16,9 +16,10 @@ var now_x=null;
 var now_y=null;
 var now_color=null;
 
-// 全ての図形の座標の値を保存
+// 全ての図形の座標の値と色を保存
 var x_list= new Array();
 var y_list= new Array();
+var color_list = new Array();
 
 // 座標配列のconvexが該当する番号
 var convex_list= new Array();
@@ -68,6 +69,7 @@ function createBlock(x,y,color) {
     document.getElementById("canvas_wrapper").appendChild(canvas);
 }
 
+// 凸ブロックを作成
 function createConvex(x,y,color) {
     x_list.push(x);
     y_list.push(y);
@@ -84,6 +86,7 @@ function createConvex(x,y,color) {
         }
     }
     now_color=color
+    color_list.push(color)
 
     createBlock(x+block.width,y,color);
     createBlock(x+block.width,y+block.height,color);
@@ -92,19 +95,24 @@ function createConvex(x,y,color) {
 
     console.log(x_list);
     console.log(y_list);
+    console.log(color_list);
     console.log(convex_list);
 }
 
+//凸ブロックを削除
 function removeConvex(x,y){
     x_list.pop();
     y_list.pop();
+    color_list.pop();
     convex_list.pop();
 
     context.clearRect(x+block.width,y,block.width,block.height);
     context.clearRect(x,y+block.height,block.width*3,block.height);
 }
 
+//凸ブロックを移動
 function moveConvex(direction) {
+    refreshScreen();
     removeConvex(now_x,now_y)
    switch(direction){
         case "up":
@@ -125,7 +133,7 @@ function moveConvex(direction) {
 // キーボードの処理
 document.addEventListener("keydown",
     event => {
-        //console.log(event.code);
+        console.log(event.code);
         switch(event.code){
             case "ArrowUp":
                 moveConvex("up");
@@ -139,9 +147,36 @@ document.addEventListener("keydown",
             case "ArrowLeft":
                 moveConvex("left");
                 break;
+            case "KeyR":
+                refreshScreen();
+                break;
         }
     }
 );
+
+
+//画面を再描写
+function refreshScreen(){
+    var _x_list=x_list;
+    var _y_list=y_list;
+    var _color_list=color_list;
+
+    x_list= new Array();
+    y_list= new Array();
+    color_list = new Array();
+    
+
+    //凸ブロックを再描写
+    var _convex_list=convex_list;
+    convex_list= new Array();
+    for (var i = 0; i < _convex_list.length; i++) {
+        createConvex(_x_list[i],_y_list[i],_color_list[i])
+    }
+
+    //罫線を再描写
+    //createLine();
+}
+
 
 
 createConvex(0,0)
