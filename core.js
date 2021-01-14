@@ -70,17 +70,19 @@ function refreshScreen(){
     var _x_list=x_list;
     var _y_list=y_list;
     var _color_list=color_list;
+    var _direction_list = direction_list;
 
     x_list= new Array();
     y_list= new Array();
     color_list = new Array();
+    direction_list = new Array();
     
 
     //凸ブロックを再描写
     var _convex_list=convex_list;
     convex_list= new Array();
     for (var i = 0; i < _convex_list.length; i++) {
-        createConvex(_x_list[i],_y_list[i],_color_list[i])
+        createConvex(_x_list[i],_y_list[i],_color_list[i],_direction_list[i]);
     }
 
     //罫線を再描写

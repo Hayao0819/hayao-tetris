@@ -23,10 +23,10 @@ function createConvex(x,y,color,direction) {
 
     //方向を設定
     if (direction == null){
-        direction="up";
+        direction=now_direction;
     }
     now_direction=direction;
-    direction_list.pop(direction);
+    direction_list.push(direction);
 
     switch(direction){
         case "up":
@@ -41,10 +41,11 @@ function createConvex(x,y,color,direction) {
             createBlock(x+block.width * 2,y,color);
             createBlock(x+block.width,y+block.height,color);
             break;
-        
     }
 
-
+    console.log(direction_list);
+    console.log(color_list);
+    
     WriteLog("Created " + direction + " convex (" + x + " " + y + ")");
 }
 
@@ -102,6 +103,7 @@ function moveConvex(destination) {
 
 
 function roteteConvex(){
+    WriteLog("====== Rotate Convex =====")
     removeConvex(now_x,now_y);
     switch(now_direction){
         case "up":
