@@ -1,4 +1,4 @@
 WriteLog("Loaded main.js")
-WriteLog("====== Finish Start Process =====")
+WriteLog("====== Finished the start process =====")
 
 createConvex(0,0,"random","down")
