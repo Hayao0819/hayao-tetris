@@ -1,7 +1,7 @@
 function WriteLog(_msg) {
     var LogBox = document.getElementById("log");
     console.log(LogBox.value)
-    if ( LogBox.value == null ){
+    if ( LogBox.value == "" ){
         LogBox.value = _msg;
     } else {
         LogBox.value = LogBox.value + "\n" + _msg;
