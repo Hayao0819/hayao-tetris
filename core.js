@@ -78,3 +78,5 @@ function refreshScreen(){
     //罫線を再描写
     //createLine();
 }
+
+WriteLog("Loaded core.js")

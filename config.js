@@ -31,3 +31,5 @@ colors=[
 // 範囲の設定
 canvas.width=640;
 canvas.height=480;
+
+WriteLog("Loaded config.js")

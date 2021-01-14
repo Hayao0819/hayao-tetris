@@ -24,10 +24,8 @@ function createConvex(x,y,color) {
     createBlock(x+block.width * 2,y+block.height,color);
     createBlock(x,y+block.height,color);
 
-    console.log(x_list);
-    console.log(y_list);
-    console.log(color_list);
-    console.log(convex_list);
+
+    WriteLog("Created convex (" + x + " " + y + ")");
 }
 
 //凸ブロックを削除
@@ -39,24 +37,38 @@ function removeConvex(x,y){
 
     context.clearRect(x+block.width,y,block.width,block.height);
     context.clearRect(x,y+block.height,block.width*3,block.height);
+
+    WriteLog("Removed convex (" + x + " " + y + ")");
 }
 
 //凸ブロックを移動
 function moveConvex(direction) {
+    WriteLog("====== Move Convex =====")
     refreshScreen();
     removeConvex(now_x,now_y)
+    var move_x, move_y
    switch(direction){
         case "up":
-            createConvex(now_x,now_y-block.height,now_color);
+            move_x = now_x;
+            move_y = now_y - block.height;
             break;
         case "down":
-            createConvex(now_x,now_y+block.height,now_color);
+            move_x = now_x;
+            move_y = now_y + block.height;
             break;
         case "right":
-            createConvex(now_x+block.height,now_y,now_color);
+            move_x = now_x + block.height;
+            move_y = now_y;
             break;
         case "left":
-            createConvex(now_x-block.height,now_y,now_color);
+            move_x = now_x - block.height;
+            move_y = now_y;
             break;
    }
+
+   //WriteLog("Moved (" + now_x + " " + now_y + ") to (" + move_x + " " + move_y + ")");
+
+   createConvex(move_x,move_y,now_color)
 }
+
+WriteLog("Loaded convex.js")
