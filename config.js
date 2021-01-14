@@ -32,4 +32,8 @@ colors=[
 canvas.width=640;
 canvas.height=480;
 
+// 罫線を表示
+Line = true;
+//Line = false;
+
 WriteLog("Loaded config.js")
