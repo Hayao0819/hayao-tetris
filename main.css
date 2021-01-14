@@ -20,6 +20,8 @@ textarea{
     resize: none;
     height: 75vh;
     width: 90%;
+    border: none;
+    outline: none;
 }
 
 #sidebar{
