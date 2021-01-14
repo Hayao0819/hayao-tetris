@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 // 凸ブロックを作成
-function createConvex(x,y,color) {
+// 座標は必須、それ以外は無くても可
+function createConvex(x,y,color,direction) {
     x_list.push(x);
     y_list.push(y);
     convex_list.push(x_list.length);
-
     now_x=x
     now_y=y
-    if ( color == null ) {
+
+    //色を設定
+    if ( color == null || color == "random") {
         if (block.color != null) {
             var color = block.color;
         } else {
@@ -19,13 +21,31 @@ function createConvex(x,y,color) {
     now_color=color
     color_list.push(color)
 
-    createBlock(x+block.width,y,color);
-    createBlock(x+block.width,y+block.height,color);
-    createBlock(x+block.width * 2,y+block.height,color);
-    createBlock(x,y+block.height,color);
+    //方向を設定
+    if (direction == null){
+        direction="up";
+    }
+    now_direction=direction;
+    direction_list.pop(direction);
+
+    switch(direction){
+        case "up":
+            createBlock(x+block.width,y,color);
+            createBlock(x+block.width,y+block.height,color);
+            createBlock(x+block.width * 2,y+block.height,color);
+            createBlock(x,y+block.height,color);
+            break;
+        case "down":
+            createBlock(x,y,color);
+            createBlock(x+block.width,y,color);
+            createBlock(x+block.width * 2,y,color);
+            createBlock(x+block.width,y+block.height,color);
+            break;
+        
+    }
 
 
-    WriteLog("Created convex (" + x + " " + y + ")");
+    WriteLog("Created " + direction + " convex (" + x + " " + y + ")");
 }
 
 //凸ブロックを削除
@@ -35,19 +55,28 @@ function removeConvex(x,y){
     color_list.pop();
     convex_list.pop();
 
-    context.clearRect(x+block.width,y,block.width,block.height);
-    context.clearRect(x,y+block.height,block.width*3,block.height);
+    switch(now_direction){
+        case "up":
+            context.clearRect(x+block.width,y,block.width,block.height);
+            context.clearRect(x,y+block.height,block.width*3,block.height);
+            break;
+        case "down":
+            context.clearRect(x+block.width,y+block.height,block.width,block.height);
+            context.clearRect(x,y,block.width * 3,block.height);
+            break;
+    }
+
 
     WriteLog("Removed convex (" + x + " " + y + ")");
 }
 
 //凸ブロックを移動
-function moveConvex(direction) {
+function moveConvex(destination) {
     WriteLog("====== Move Convex =====")
     removeConvex(now_x,now_y)
     refreshScreen();
-    var move_x, move_y
-   switch(direction){
+    var move_x, move_y;
+    switch(destination){
         case "up":
             move_x = now_x;
             move_y = now_y - block.height;
@@ -68,7 +97,20 @@ function moveConvex(direction) {
 
    //WriteLog("Moved (" + now_x + " " + now_y + ") to (" + move_x + " " + move_y + ")");
 
-   createConvex(move_x,move_y,now_color)
+   createConvex(move_x,move_y,now_color,now_direction);
+}
+
+
+function roteteConvex(){
+    removeConvex(now_x,now_y);
+    switch(now_direction){
+        case "up":
+            createConvex(now_x,now_y,now_color,"down");
+            break;
+        case "down":
+            createConvex(now_x,now_y,now_color,"up");
+            break;
+    }
 }
 
 WriteLog("Loaded convex.js")

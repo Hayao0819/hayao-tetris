@@ -57,6 +57,9 @@ document.addEventListener("keydown",
             case "KeyR":
                 refreshScreen();
                 break;
+            case "KeyS":
+                roteteConvex();
+                break;
         }
     }
 );

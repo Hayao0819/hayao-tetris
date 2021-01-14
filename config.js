@@ -9,11 +9,13 @@ var block={
 var now_x=null;
 var now_y=null;
 var now_color=null;
+var now_direction=null;
 
 // 全ての図形の座標の値と色を保存
 var x_list= new Array();
 var y_list= new Array();
 var color_list = new Array();
+var direction_list = new Array();
 
 // 座標配列のconvexが該当する番号
 var convex_list= new Array();
