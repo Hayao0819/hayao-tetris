@@ -44,8 +44,8 @@ function removeConvex(x,y){
 //凸ブロックを移動
 function moveConvex(direction) {
     WriteLog("====== Move Convex =====")
-    refreshScreen();
     removeConvex(now_x,now_y)
+    refreshScreen();
     var move_x, move_y
    switch(direction){
         case "up":
