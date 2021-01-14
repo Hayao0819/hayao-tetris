@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>ハヤオのテトリス</title>
-    <style>
-        body{
-            margin:0;
-	        padding:0;
-        }
-        #canvas_wrapper{
-            width:640px;
-            margin: 5% auto;
-        }
-        canvas{
-            /* border: 2px solid black; */
-        }
-
-    </style>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body onclick="createConvex(100,300)">
-    <div id="canvas_wrapper"></div>
-    <p style="text-align: center;">ブロックの数と座標がConsoleに出力されてるはず</p>
+<body>
+    <div id="container">
+        <div id="main">
+            <div id="canvas_wrapper"></div>
+            <form>
+                <input type="button" value="ブロックを追加" onclick="createConvex(100,300)">
+            </form>
+            <p>ブロックの数と座標がConsoleに出力されてるはず</p>
+        </div>
+
+        <div id="sidebar">
+            <form>
+                <textarea name="log" id="log" readonly></textarea>
+            </form>
+        </div>
+    </div>
+    
     <span id="load_script">
         <script type="text/javascript" src="./initilize.js"></script>
         <script type="text/javascript" src="./config.js"></script>
@@ -28,6 +29,6 @@
         <script type="text/javascript" src="./convex.js"></script>
         <script type="text/javascript" src="./main.js"></script>
     </span>
-    
+
 </body>
 </html>
