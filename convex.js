@@ -109,6 +109,7 @@ function roteteConvex(){
             createConvex(now_x,now_y,now_color,"up");
             break;
     }
+    createLine();
 }
 
 WriteLog("Loaded convex.js")
