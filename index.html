@@ -6,21 +6,24 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div id="container">
-        <div id="main">
-            <div id="canvas_wrapper"></div>
-            <form>
-                <input type="button" value="ブロックを追加" onclick="createConvex(0,0)">
-                <input type="button" value="罫線切り替え" onclick="changeLine()">
-            </form>
-            <p>ブロックの数と座標がConsoleに出力されてるはず</p>
-        </div>
+    <header style="text-align: center;">
+        <h1>ハヤオのCanvasで作ったテトリスみたいなもの</h1>
+        <p>JSの勉強目的で作ってます。最適化もクソもないようなコードなのでソース見ないでください。</p>
+    </header>
+    
+    <main>
+        <div id="canvas_wrapper"></div>
+        <form>
+            <input type="button" value="ブロックを追加" onclick="AddBlock()">
+            <input type="button" value="罫線切り替え" onclick="changeLine()">
+        </form>
+        <p>バグがあったら<a href="https://twitter.com/Hayao0819">ハヤオ</a>に報告してね</p>
+    </main>
 
-        <div id="sidebar">
-            <form>
-                <textarea name="log" id="log" readonly></textarea>
-            </form>
-        </div>
+    <div id="sidebar">
+        <form>
+            <textarea name="log" id="log" readonly></textarea>
+        </form>
     </div>
     
     <span id="load_script">
