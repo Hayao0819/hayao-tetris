@@ -41,6 +41,12 @@ function createConvex(x,y,color,direction) {
             createBlock(x+block.width * 2,y,color);
             createBlock(x+block.width,y+block.height,color);
             break;
+        case "right":
+            createBlock(x,y,color);
+            createBlock(x,y+block.height,color);
+            createBlock(x+block.width,y+block.height,color);
+            createBlock(x,y+block.height * 2,color);
+            break;
     }
     WriteLog("Created " + direction + " convex (" + x + " " + y + ")");
 }
@@ -61,6 +67,10 @@ function removeConvex(x,y){
         case "down":
             context.clearRect(x+block.width,y+block.height,block.width,block.height);
             context.clearRect(x,y,block.width * 3,block.height);
+            break;
+        case "right":
+            context.clearRect(x,y,block.width,block.height * 3);
+            context.clearRect(x+block.width,y+block.height,block.width,block.height);
             break;
     }
 
@@ -103,11 +113,15 @@ function roteteConvex(){
     removeConvex(now_x,now_y);
     switch(now_direction){
         case "up":
+            createConvex(now_x,now_y,now_color,"right");
+            break;
+        case "right":
             createConvex(now_x,now_y,now_color,"down");
             break;
         case "down":
             createConvex(now_x,now_y,now_color,"up");
             break;
+
     }
     createLine();
 }

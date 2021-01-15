@@ -17,4 +17,5 @@ function changeLine(){
 WriteLog("Loaded main.js")
 WriteLog("====== Finished the start process =====")
 
-createConvex(0,0,"random","down")
+createConvex(0,0,"random","up");
+//removeConvex(0,0)
