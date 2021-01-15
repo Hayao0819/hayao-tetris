@@ -53,8 +53,6 @@ function createConvex(x,y,color,direction) {
             break;
     }
 
-    //console.log(y);
-    console.log(now_bottom);
     WriteLog("Created " + direction + " convex (" + x + " " + y + ")");
 }
 
