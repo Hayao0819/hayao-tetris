@@ -42,10 +42,6 @@ function createConvex(x,y,color,direction) {
             createBlock(x+block.width,y+block.height,color);
             break;
     }
-
-    console.log(direction_list);
-    console.log(color_list);
-    
     WriteLog("Created " + direction + " convex (" + x + " " + y + ")");
 }
 
@@ -55,6 +51,7 @@ function removeConvex(x,y){
     y_list.pop();
     color_list.pop();
     convex_list.pop();
+    direction_list.pop();
 
     switch(now_direction){
         case "up":
@@ -74,8 +71,6 @@ function removeConvex(x,y){
 //凸ブロックを移動
 function moveConvex(destination) {
     WriteLog("====== Move Convex =====")
-    removeConvex(now_x,now_y)
-    refreshScreen();
     var move_x, move_y;
     switch(destination){
         case "up":
@@ -97,8 +92,9 @@ function moveConvex(destination) {
    }
 
    //WriteLog("Moved (" + now_x + " " + now_y + ") to (" + move_x + " " + move_y + ")");
-
+   removeConvex(now_x,now_y)
    createConvex(move_x,move_y,now_color,now_direction);
+   refreshScreen();
 }
 
 

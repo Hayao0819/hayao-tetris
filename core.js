@@ -40,7 +40,7 @@ function createBlock(x,y,color) {
 // キーボードの処理
 document.addEventListener("keydown",
     event => {
-        console.log(event.code);
+        //console.log(event.code);
         switch(event.code){
             case "ArrowUp":
                 moveConvex("up");
@@ -67,16 +67,18 @@ document.addEventListener("keydown",
 
 //画面を再描写
 function refreshScreen(){
+    
     var _x_list=x_list;
     var _y_list=y_list;
     var _color_list=color_list;
     var _direction_list = direction_list;
+    
 
     x_list= new Array();
     y_list= new Array();
     color_list = new Array();
     direction_list = new Array();
-    
+
 
     //凸ブロックを再描写
     var _convex_list=convex_list;
