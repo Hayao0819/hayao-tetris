@@ -34,6 +34,10 @@ function createConvex(x,y,color,direction) {
             createBlock(x+block.width,y+block.height,color);
             createBlock(x+block.width * 2,y+block.height,color);
             createBlock(x,y+block.height,color);
+            now_top=y;
+            now_bottom=y+ block.height + block.height * 2;
+            now_left=x - block.width;
+            now_right=x + block.width * 2  + block.width * 2;
             break;
         case "down":
             createBlock(x,y,color);
@@ -48,6 +52,9 @@ function createConvex(x,y,color,direction) {
             createBlock(x,y+block.height * 2,color);
             break;
     }
+
+    //console.log(y);
+    console.log(now_bottom);
     WriteLog("Created " + direction + " convex (" + x + " " + y + ")");
 }
 
@@ -80,27 +87,45 @@ function removeConvex(x,y){
 
 //凸ブロックを移動
 function moveConvex(destination) {
-    WriteLog("====== Move Convex =====")
     var move_x, move_y;
     switch(destination){
         case "up":
-            move_x = now_x;
-            move_y = now_y - block.height;
+            if (! now_top <= 0){
+                move_x = now_x;
+                move_y = now_y - block.height;
+            }else{
+                return;
+            }
             break;
         case "down":
-            move_x = now_x;
-            move_y = now_y + block.height;
+            // 440 + 40                        480
+            // 0 + 40
+            if (now_bottom <= canvas.height){
+                move_x = now_x;
+                move_y = now_y + block.height;
+            }else{
+                return;
+            }
             break;
         case "right":
-            move_x = now_x + block.height;
-            move_y = now_y;
+            if (now_right<= canvas.width){
+                move_x = now_x + block.height;
+                move_y = now_y;
+            }else{
+                return;
+            }
             break;
         case "left":
-            move_x = now_x - block.height;
-            move_y = now_y;
+            if (now_left >= 0){
+                move_x = now_x - block.height;
+                move_y = now_y;
+            }else{
+                return;
+            }
             break;
    }
 
+   WriteLog("====== Move Convex =====")
    //WriteLog("Moved (" + now_x + " " + now_y + ") to (" + move_x + " " + move_y + ")");
    removeConvex(now_x,now_y)
    createConvex(move_x,move_y,now_color,now_direction);

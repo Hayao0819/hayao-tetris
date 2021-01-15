@@ -8,6 +8,12 @@ var block={
 //現在の設定
 var now_x=null;
 var now_y=null;
+
+var now_top=null;
+var now_botton=null;
+var now_right=null;
+var now_left=null;
+
 var now_color=null;
 var now_direction=null;
 
