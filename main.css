@@ -9,7 +9,7 @@ main{
 
     /* 左半分に表示 */
     float: left;
-    position: fixed;
+    position: relative;
 
     /* 高さと幅を設定 */
     width: 50vw;
@@ -34,6 +34,6 @@ textarea{
     height: 100%;
 }
 
-#sidebar,#main{
-    margin-top: 5%;
+header{
+    margin-bottom: 5%;
 }
