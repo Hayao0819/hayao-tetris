@@ -14,8 +14,30 @@ function changeLine(){
     refreshScreen();
 }
 
+function RandomDirection() {
+    var _directions
+    
+    /*
+    _directions=[
+        "up",
+        "down",
+        "right",
+        "left"
+    ]
+    */
+
+    _directions=[
+        "up"
+    ]
+    return(_directions[Math.floor(Math.random() * _directions.length)]);
+}
+
+function AddNewBlock(){
+    createConvex(0,0,"random",RandomDirection());
+}
+
 WriteLog("Loaded main.js")
 WriteLog("====== Finished the start process =====")
 
-createConvex(0,0,"random","up");
+AddNewBlock();
 //removeConvex(0,0)
