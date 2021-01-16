@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 // 凸ブロックを作成
 // 座標は必須、それ以外は無くても可
 function createConvex(x,y,color,direction) {
